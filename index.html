@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Extreme Temperatures</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <style>
+        .tooltip {
+            border-bottom: 2px dotted #3b82f6;
+            position: relative;
+            cursor: help;
+        }
+        .tooltip:hover::after {
+            content: "Kidspeak: The space or gap between two numbers.";
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1e3a8a;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 14px;
+            white-space: nowrap;
+            z-index: 50;
+            margin-bottom: 6px;
+            pointer-events: none;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        }
+        input[type=range] {
+            -webkit-appearance: none;
+            width: 100%;
+            background: transparent;
+        }
+        input[type=range]:focus {
+            outline: none;
+        }
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 20px;
+            width: 20px;
+            border-radius: 50%;
+            background: #2563eb;
+            cursor: pointer;
+            margin-top: -8px;
+            border: 2px solid white;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+        }
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 6px;
+            cursor: pointer;
+            background: #cbd5e1;
+            border-radius: 3px;
+        }
+        
+        /* Scrollbar styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8; 
+        }
+    </style>
+</head>
+<body class="h-screen w-screen flex flex-col bg-slate-50 text-slate-800 overflow-hidden font-sans">
+    
+    <!-- Header -->
+    <header class="bg-blue-600 text-white p-4 shadow-md shrink-0 flex items-center justify-between z-10 relative">
+        <h1 class="text-2xl font-bold tracking-wide">Extreme Temperatures</h1>
+        <div class="text-blue-200 text-sm">Interactive Reading & Math</div>
+    </header>
+
+    <!-- Main scrollable reading area -->
+    <main class="flex-1 overflow-y-auto p-6 space-y-8 bg-gradient-to-b from-blue-50 to-slate-100">
+        <div class="max-w-4xl mx-auto space-y-8 pb-12">
+            
+            <section class="bg-white p-6 rounded-xl shadow-sm border border-slate-200 flex flex-col md:flex-row gap-6 items-start">
+                <div class="flex-1 space-y-4">
+                    <h2 class="text-xl font-semibold text-blue-900 border-b pb-2">Antarctica Record</h2>
+                    <p class="text-lg leading-relaxed">The coldest temperature ever recorded on Earth was -89°C at the Russian research station, Vostok in Antarctica. The average winter inland temperature in Antarctica is -59°C.</p>
+                </div>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Vostok_Station_2024.png?utm_source=en.wikipedia.org&utm_campaign=index&utm_content=original" alt="Vostok Station" class="w-full md:w-64 rounded-lg shadow-md object-cover border border-slate-200" onerror="this.src='https://via.placeholder.com/300x200?text=Vostok+Station'">
+            </section>
+
+            <section class="bg-white p-6 rounded-xl shadow-sm border border-slate-200 flex flex-col md:flex-row gap-6 items-start">
+                <div class="flex-1 space-y-4">
+                    <h2 class="text-xl font-semibold text-blue-900 border-b pb-2">Siberian Record</h2>
+                    <p class="text-lg leading-relaxed">The coldest temperature in the northern hemisphere was -78°C in Oimekon, Siberia. It is so cold that boiling water thrown into the air freezes before it hits the ground.</p>
+                </div>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Oymyakon_-_190228_DSC_5642.jpg?utm_source=en.wikipedia.org&utm_campaign=index&utm_content=original" alt="Oimekon" class="w-full md:w-64 rounded-lg shadow-md object-cover border border-slate-200" onerror="this.src='https://via.placeholder.com/300x200?text=Oimekon,+Siberia'">
+            </section>
+
+            <section class="bg-white p-6 rounded-xl shadow-sm border border-slate-200 flex flex-col md:flex-row gap-6 items-start">
+                <div class="flex-1 space-y-4">
+                    <h2 class="text-xl font-semibold text-blue-900 border-b pb-2">Space & Science</h2>
+                    <p class="text-lg leading-relaxed">The coldest place in our solar system is probably Triton, a moon of the planet Neptune, where the temperature reaches -235°C.</p>
+                    <p class="text-lg leading-relaxed">The coldest temperature possible is -273°C, which is also called absolute zero. This is where atoms reach their lowest possible level of movement and everything freezes solid — even air. Scientists have used lab freezers and lasers to get within 100 billionths of a degree to absolute zero.</p>
+                </div>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Ultra_Low_Temperature_Freezer.jpg/320px-Ultra_Low_Temperature_Freezer.jpg" alt="Science Lab Freezer" class="w-full md:w-64 rounded-lg shadow-md object-cover border border-slate-200">
+            </section>
+
+            <section class="bg-white p-6 rounded-xl shadow-sm border border-slate-200 flex flex-col md:flex-row gap-6 items-start">
+                <div class="flex-1 space-y-4">
+                    <h2 class="text-xl font-semibold text-red-800 border-b pb-2">Scorching Heat</h2>
+                    <p class="text-lg leading-relaxed">On the other extreme, the hottest temperature ever recorded on Earth was a blistering 57°C in Death Valley, California.</p>
+                </div>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Death_Valley_Zabriskie_Point.jpg/640px-Death_Valley_Zabriskie_Point.jpg" alt="Death Valley" class="w-full md:w-64 rounded-lg shadow-md object-cover border border-slate-200">
+            </section>
+
+            <section class="bg-white p-6 rounded-xl shadow-sm border border-slate-200 flex flex-col md:flex-row gap-6 items-start">
+                <div class="flex-1 space-y-4">
+                    <h2 class="text-xl font-semibold text-emerald-800 border-b pb-2">Dunedin Climate</h2>
+                    <p class="text-lg leading-relaxed">In Dunedin, New Zealand, the climate is much milder. The average summer temperature is pleasant, but the hottest temperature ever recorded was 35°C, and the coldest temperature ever recorded was -8°C.</p>
+                </div>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Dunedin_Railway_Station_02.jpg/640px-Dunedin_Railway_Station_02.jpg" alt="Dunedin" class="w-full md:w-64 rounded-lg shadow-md object-cover border border-slate-200">
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Fixed Bottom Question Dock -->
+    <footer class="shrink-0 bg-white border-t-4 border-blue-300 shadow-2xl relative z-20">
+        <div class="max-w-4xl mx-auto p-6">
+            
+            <div class="flex justify-between items-center mb-4">
+                <div class="text-sm font-bold text-slate-400 tracking-wider uppercase">Question <span id="q-current">1</span> of <span id="q-total">15</span></div>
+                <!-- Progress bar -->
+                <div class="w-1/2 bg-slate-100 rounded-full h-2">
+                    <div id="progress-bar" class="bg-blue-500 h-2 rounded-full transition-all duration-300" style="width: 0%"></div>
+                </div>
+            </div>
+
+            <div class="flex flex-col md:flex-row gap-4 items-center">
+                <h3 id="question-text" class="text-xl font-medium text-slate-800 flex-1 leading-snug">
+                    <!-- Question injected here -->
+                </h3>
+                
+                <div class="flex gap-2 w-full md:w-auto relative">
+                    <input type="text" id="answer-input" class="border-2 border-slate-300 rounded-lg px-4 py-2 w-full md:w-48 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition-all text-lg font-semibold text-center" placeholder="Your answer...">
+                    <button id="submit-btn" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-lg transition-colors shadow-sm">Check</button>
+                    
+                    <!-- Teacher skip -->
+                    <button id="skip-btn" class="text-slate-300 hover:text-slate-500 p-2 transition-colors" title="Teacher Skip">
+                        <i class="fas fa-key"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Feedback Message -->
+            <div id="feedback-msg" class="h-6 mt-2 text-center font-semibold text-red-500 opacity-0 transition-opacity duration-200">
+                Incorrect. Try reading the text again!
+            </div>
+
+            <!-- Interactive Number Line (Hidden by Default) -->
+            <div id="number-line-container" class="hidden mt-4 pt-4 border-t border-slate-100 bg-slate-50 rounded-lg p-4 transition-all duration-500">
+                <div class="text-center text-sm font-semibold text-slate-600 mb-2">Math Helper: Use sliders to find the <span class="tooltip">difference</span></div>
+                <div class="relative pt-6 pb-2 px-4">
+                    <!-- Sliders -->
+                    <input type="range" id="slider1" min="-300" max="100" value="-50" class="absolute top-4 left-0 w-full z-10">
+                    <input type="range" id="slider2" min="-300" max="100" value="50" class="absolute top-4 left-0 w-full z-20 pointer-events-none" style="opacity: 0.7;">
+                    
+                    <!-- Custom style to make slider2 clickable -->
+                    <style>
+                        #slider2 { pointer-events: auto; }
+                    </style>
+                    
+                    <!-- Labels -->
+                    <div class="flex justify-between text-xs text-slate-400 font-bold mt-6 px-1">
+                        <span>-300</span>
+                        <span>-200</span>
+                        <span>-100</span>
+                        <span>0</span>
+                        <span>100</span>
+                    </div>
+                </div>
+                
+                <div class="flex justify-center gap-6 text-sm font-mono bg-white p-3 rounded shadow-inner mt-2 border border-slate-200">
+                    <div class="text-blue-600 font-bold flex flex-col items-center">
+                        <span class="text-xs text-slate-400 uppercase">Temp 1</span>
+                        <span id="val1">-50</span>
+                    </div>
+                    <div class="text-slate-300 text-2xl font-light">|</div>
+                    <div class="text-red-600 font-bold flex flex-col items-center">
+                        <span class="text-xs text-slate-400 uppercase">Temp 2</span>
+                        <span id="val2">50</span>
+                    </div>
+                    <div class="text-slate-300 text-2xl font-light">=</div>
+                    <div class="text-slate-800 font-bold flex flex-col items-center">
+                        <span class="text-xs text-slate-400 uppercase">Difference</span>
+                        <span id="valDiff" class="text-lg">100</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+
+    <!-- Completion Overlay -->
+    <div id="completion-screen" class="fixed inset-0 bg-blue-900/95 z-50 hidden flex-col items-center justify-center text-white backdrop-blur-sm">
+        <i class="fas fa-snowflake text-6xl text-blue-300 mb-6 animate-pulse"></i>
+        <h2 class="text-5xl font-bold mb-4">Great Job!</h2>
+        <p class="text-xl text-blue-200">You've mastered extreme temperatures.</p>
+        <button onclick="location.reload()" class="mt-8 bg-white text-blue-900 font-bold py-3 px-8 rounded-full shadow-lg hover:scale-105 transition-transform">Start Over</button>
+    </div>
+
+    <script>
+        const questions = [
+            { text: "Which research station recorded the coldest temperature on Earth?", answer: "vostok", isNumeric: false },
+            { text: "What town in Siberia holds the northern hemisphere cold record?", answer: "oimekon", isNumeric: false },
+            { text: "What is the moon of Neptune called that reaches -235°C?", answer: "triton", isNumeric: false },
+            { text: "What is the coldest possible temperature called?", answer: "absolute zero", isNumeric: false },
+            { text: "What is the hottest recorded temperature on Earth in Death Valley (°C)?", answer: "57", isNumeric: true },
+            { text: "What is the hottest temperature ever recorded in Dunedin (°C)?", answer: "35", isNumeric: true },
+            { text: "What is the coldest temperature ever recorded in Dunedin (°C)?", answer: "-8", isNumeric: true },
+            { text: "How much warmer is the Vostok record (-89) compared to Triton (-235)?", answer: "146", isNumeric: true },
+            { text: "What is the <span class='tooltip'>difference</span> between Triton (-235) and Absolute Zero (-273)?", answer: "38", isNumeric: true },
+            { text: "How much warmer is the coldest Dunedin temperature (-8) compared to the inland Antarctica winter average (-59)?", answer: "51", isNumeric: true },
+            { text: "What is the <span class='tooltip'>difference</span> between the hottest temperature in Dunedin (35) and the coldest (-8)?", answer: "43", isNumeric: true },
+            { text: "How much warmer is Death Valley (57) compared to the hottest Dunedin record (35)?", answer: "22", isNumeric: true },
+            { text: "What is the <span class='tooltip'>difference</span> between the Vostok record (-89) and the Oimekon record (-78)?", answer: "11", isNumeric: true },
+            { text: "What is the <span class='tooltip'>difference</span> between the highest Death Valley record (57) and the coldest Antarctica record (-89)?", answer: "146", isNumeric: true },
+            { text: "What is the <span class='tooltip'>difference</span> between absolute zero (-273) and the hottest recorded temperature in Death Valley (57)?", answer: "330", isNumeric: true }
+        ];
+
+        let currentIndex = 0;
+        let wrongAttempts = 0;
+
+        const qCurrentEl = document.getElementById('q-current');
+        const qTotalEl = document.getElementById('q-total');
+        const progressBar = document.getElementById('progress-bar');
+        const questionText = document.getElementById('question-text');
+        const answerInput = document.getElementById('answer-input');
+        const submitBtn = document.getElementById('submit-btn');
+        const skipBtn = document.getElementById('skip-btn');
+        const feedbackMsg = document.getElementById('feedback-msg');
+        const numberLineContainer = document.getElementById('number-line-container');
+        const completionScreen = document.getElementById('completion-screen');
+
+        // Number Line Elements
+        const s1 = document.getElementById('slider1');
+        const s2 = document.getElementById('slider2');
+        const v1 = document.getElementById('val1');
+        const v2 = document.getElementById('val2');
+        const vDiff = document.getElementById('valDiff');
+
+        qTotalEl.innerText = questions.length;
+
+        function updateNumberLine() {
+            v1.innerText = s1.value;
+            v2.innerText = s2.value;
+            vDiff.innerText = Math.abs(parseInt(s1.value) - parseInt(s2.value));
+        }
+
+        s1.addEventListener('input', updateNumberLine);
+        s2.addEventListener('input', updateNumberLine);
+
+        function loadQuestion() {
+            if (currentIndex >= questions.length) {
+                completionScreen.classList.remove('hidden');
+                completionScreen.classList.add('flex');
+                return;
+            }
+
+            const q = questions[currentIndex];
+            qCurrentEl.innerText = currentIndex + 1;
+            progressBar.style.width = `${((currentIndex) / questions.length) * 100}%`;
+            questionText.innerHTML = q.text;
+            answerInput.value = '';
+            answerInput.focus();
+            wrongAttempts = 0;
+            
+            feedbackMsg.style.opacity = '0';
+            numberLineContainer.classList.add('hidden');
+        }
+
+        function handleAnswer() {
+            const q = questions[currentIndex];
+            const userInput = answerInput.value.trim().toLowerCase();
+
+            if (userInput === q.answer) {
+                feedbackMsg.style.opacity = '0';
+                currentIndex++;
+                loadQuestion();
+            } else {
+                wrongAttempts++;
+                feedbackMsg.style.opacity = '1';
+                answerInput.classList.add('border-red-500');
+                setTimeout(() => answerInput.classList.remove('border-red-500'), 500);
+
+                if (wrongAttempts >= 2 && q.isNumeric) {
+                    numberLineContainer.classList.remove('hidden');
+                    // auto scroll to bottom to show number line
+                    document.querySelector('footer').scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+        }
+
+        submitBtn.addEventListener('click', handleAnswer);
+        answerInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') handleAnswer();
+        });
+
+        skipBtn.addEventListener('click', () => {
+            currentIndex++;
+            loadQuestion();
+        });
+
+        // Init
+        loadQuestion();
+    </script>
+</body>
+</html>
